@@ -1,16 +1,43 @@
 <html>
     <head>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script>
+            $('#logs_form').submit(function (e) {
+                e.preventDefault();
+                let data;
+                if ($("#logs_url").value()) {
+                    data = {"logs_url": $("#logs_url").value()};
+                } else {
+                    data = {
+                        "report_code": $("#report_code").value(),
+                        "fight_id": $("#fight_id").value(),
+                        "source_id": $("#source_id").value()
+                    };
+                }
+                $.ajax({
+                    url: 'https://3c1b653iwb.execute-api.us-east-1.amazonaws.com/dev/logs_gear_exporter?report_code=m8z9xadHJMr2qR41&fight_id=39&source_id=8',
+                    type: 'GET',
+                    data: data,
+                    success: function (response) {
+                        $('#logs_response').text(response);
+                    }
+                });
+            });
+        </script>
     </head>
     <body>
-        <form action="https://3c1b653iwb.execute-api.us-east-1.amazonaws.com/dev/logs_gear_exporter" method="GET">
+        <form id="logs_form">
             <label for="report_code">Report Code:</label><br>
             <input type="text" id="report_code" name="report_code"><br>
             <label for="fight_id">Fight ID:</label><br>
-            <input type="text" id="fight_id" name="fight_id">
+            <input type="text" id="fight_id" name="fight_id"><br>
             <label for="source_id">Source ID:</label><br>
-            <input type="text" id="source_id" name="source_id">
-            <input type="submit" value="Submit">
+            <input type="text" id="source_id" name="source_id"><br><br>
+            Or enter just the logs urls
+            <label for="logs_url">Logs URL:</label><br>
+            <input type="text" id="logs_url" name="logs_url"><br>
+            <input type="submit" value="Submit"><br>
           </form>
+        <textarea id="logs_response"></textarea>
     </body>
 </html>
