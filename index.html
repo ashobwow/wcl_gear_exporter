@@ -21,7 +21,7 @@
                     type: 'GET',
                     data: data,
                     success: function (response) {
-                        parse = JSON.parse(response);
+                        parsed = JSON.parse(response);
                         var cls = parsed.player.class.split('Class')[1].toLowerCase();
                         var spec = Object.keys(parsed.player).find(el => el.toLowerCase().includes(cls))
                         const spec_urls = {
