@@ -5,6 +5,7 @@
             function getLogsData() {
                 let logsResponseTextArea = document.getElementById("logs_response");
                 logsResponseTextArea.innerHTML = "";
+                document.getElementById("sims_link").innerHTML = "";
                 let data;
                 if ($("#logs_url").val()) {
                     data = {"logs_url": encodeURIComponent($("#logs_url").val())};
@@ -20,9 +21,27 @@
                     type: 'GET',
                     data: data,
                     success: function (response) {
+                        parse = JSON.parse(response);
+                        var cls = parsed.player.class.split('Class')[1].toLowerCase();
+                        var spec = Object.keys(parsed.player).find(el => el.toLowerCase().includes(cls))
+                        const spec_urls = {
+                            balanceDruid: 'https://wowsims.github.io/wotlk/balance_druid/',
+                            feralDruid: 'https://wowsims.github.io/wotlk/feral_druid/',
+                            mage: 'https://wowsims.github.io/wotlk/mage/',
+                            deathknight: 'https://wowsims.github.io/wotlk/deathknight/',
+                            hunter: 'https://wowsims.github.io/wotlk/hunter/',
+                            retributionPaladin: 'https://wowsims.github.io/wotlk/retribution_paladin/',
+                            rogue: 'https://wowsims.github.io/wotlk/rogue/',
+                            shadowPriest: 'https://wowsims.github.io/wotlk/shadow_priest/',
+                            enhancementShaman: 'https://wowsims.github.io/wotlk/enhancement_shaman/',
+                            elementalShaman: 'https://wowsims.github.io/wotlk/elemental_shaman/',
+                            warlock: 'https://wowsims.github.io/wotlk/warlock/',
+                            warrior: 'https://wowsims.github.io/wotlk/warrior/'
+                        }
                         logsResponseTextArea.innerHTML = response;
                         var copyTextButton = document.getElementById("copy_text_button");
                         copyTextButton.innerHTML = "Copy text";
+                        document.getElementById("sims_link").innerHTML = '<a href=' + spec_urls[spec] + '>' + spec_urls[spec] + '</a>'
                     }
                 });
             };
@@ -40,6 +59,7 @@
                 navigator.clipboard.writeText(copyText.value);
                 var copyTextButton = document.getElementById("copy_text_button");
                 copyTextButton.innerHTML = "Text copied";
+                
             }
         </script>
     </head>
@@ -56,6 +76,7 @@
             <label for="logs_url">Logs URL:</label><br>
             <input type="text" id="logs_url" name="logs_url"><br>
             <button onclick="getLogsData()">Submit</button>
+            <div id="sims_link"></div>
         </form>
         <textarea id="logs_response"></textarea>
         <button id="copy_text_button" onclick="copyText()">Copy text</button>
