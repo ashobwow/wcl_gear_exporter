@@ -6,7 +6,7 @@
                 e.preventDefault();
                 let data;
                 if ($("#logs_url").value()) {
-                    data = {"logs_url": $("#logs_url").value()};
+                    data = {"logs_url": encodeURIComponent($("#logs_url").value())};
                 } else {
                     data = {
                         "report_code": $("#report_code").value(),
