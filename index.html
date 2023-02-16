@@ -1,20 +1,6 @@
 <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    </head>
-    <body>
-        <form id="logs_form" onsubmit="return false;">
-            <label for="report_code">Report Code:</label><br>
-            <input type="text" id="report_code" name="report_code"><br>
-            <label for="fight_id">Fight ID:</label><br>
-            <input type="text" id="fight_id" name="fight_id"><br>
-            <label for="source_id">Source ID:</label><br>
-            <input type="text" id="source_id" name="source_id"><br><br>
-            Or enter just the logs urls
-            <label for="logs_url">Logs URL:</label><br>
-            <input type="text" id="logs_url" name="logs_url"><br>
-            <button onclick="getLogsData()">Submit</button>
-        </form>
         <script>
             function getLogsData() {
                 let data;
@@ -38,6 +24,20 @@
                 });
             };
         </script>
+    </head>
+    <body>
+        <form id="logs_form" onsubmit="return false;">
+            <label for="report_code">Report Code:</label><br>
+            <input type="text" id="report_code" name="report_code"><br>
+            <label for="fight_id">Fight ID:</label><br>
+            <input type="text" id="fight_id" name="fight_id"><br>
+            <label for="source_id">Source ID:</label><br>
+            <input type="text" id="source_id" name="source_id"><br><br>
+            Or enter just the logs urls
+            <label for="logs_url">Logs URL:</label><br>
+            <input type="text" id="logs_url" name="logs_url"><br>
+            <button onclick="getLogsData()">Submit</button>
+        </form>
         <textarea id="logs_response"></textarea>
     </body>
 </html>
