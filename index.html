@@ -8,9 +8,9 @@
                     data = {"logs_url": encodeURIComponent($("#logs_url").val())};
                 } else {
                     data = {
-                        "report_code": $("#report_code").value(),
-                        "fight_id": $("#fight_id").value(),
-                        "source_id": $("#source_id").value()
+                        "report_code": $("#report_code").val(),
+                        "fight_id": $("#fight_id").val(),
+                        "source_id": $("#source_id").val()
                     };
                 }
                 $.ajax({
