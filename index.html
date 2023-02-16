@@ -17,8 +17,7 @@
             <button onclick="getLogsData()">Submit</button>
         </form>
         <script>
-            function getLogsData(e) {
-                e.preventDefault();
+            function getLogsData() {
                 let data;
                 if ($("#logs_url").value()) {
                     data = {"logs_url": encodeURIComponent($("#logs_url").value())};
