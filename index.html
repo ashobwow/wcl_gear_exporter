@@ -20,9 +20,26 @@
                     success: function (response) {
                         let result = document.getElementById("logs_response");
                         result.innerHTML = response;
+                        var copyTextButton = document.getElementById("copy_text_button");
+                        copyTextButton.innerHTML = "Copy text";
                     }
                 });
             };
+        </script>
+        <script>
+            function myFunction() {
+                // Get the text field
+                var copyText = document.getElementById("logs_response");
+
+                // Select the text field
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); // For mobile devices
+
+                // Copy the text inside the text field
+                navigator.clipboard.writeText(copyText.value);
+                var copyTextButton = document.getElementById("copy_text_button");
+                copyTextButton.innerHTML = "Text copied";
+            }
         </script>
     </head>
     <body>
@@ -39,5 +56,6 @@
             <button onclick="getLogsData()">Submit</button>
         </form>
         <textarea id="logs_response"></textarea>
+        <button id="copy_text_button" onclick="copyText()">Copy text</button>
     </body>
 </html>
