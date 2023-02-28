@@ -18,6 +18,7 @@
                         "source_id": $("#source_id").val()
                     };
                 }
+                document.getElementById("logs_form_submit").disabled = true;
                 $.ajax({
                     url: 'https://3c1b653iwb.execute-api.us-east-1.amazonaws.com/dev/logs_gear_exporter',
                     type: 'GET',
@@ -44,6 +45,12 @@
                         var copyTextButton = document.getElementById("copy_text_button");
                         copyTextButton.innerHTML = "Copy text";
                         document.getElementById("sims_link").innerHTML = '<a href=' + spec_urls[spec] + ' target="_blank">' + spec_urls[spec] + '</a>'
+                        document.getElementById("logs_form_submit").disabled = false;
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                        document.getElementById("logs_form_submit").disabled = false;
                     }
                 });
             };
@@ -74,7 +81,7 @@
             <br>by using the Import > JSON option there
             <br><label for="logs_url">Logs URL:</label><br>
             <input type="text" id="logs_url" name="logs_url" style="width: 100%"><br>
-            <button onclick="getLogsData()">Submit</button>
+            <button onclick="getLogsData()" id="logs_form_submit">Submit</button>
             <div id="sims_link"></div>
         </form>
         <textarea id="logs_response"></textarea>
