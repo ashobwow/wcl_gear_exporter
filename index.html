@@ -1,6 +1,7 @@
 <html>
     <head>
         <link rel="shortcut icon" type="image/png" href="image/tuskee_favicon.png">
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <script>
             function getLogsData() {
@@ -65,19 +66,14 @@
         </script>
     </head>
     <body>
+        <h3>Warcraft Logs Gear Exporter</h3>
         <form id="logs_form" onsubmit="return false;">
-            <label for="report_code">Report Code:</label><br>
-            <input type="text" id="report_code" name="report_code"><br>
-            <label for="fight_id">Fight ID:</label><br>
-            <input type="text" id="fight_id" name="fight_id"><br>
-            <label for="source_id">Source ID:</label><br>
-            <input type="text" id="source_id" name="source_id"><br><br>
-            Or enter just the logs urls with the report_code, fight_id, and source_id in it
+            Enter the logs urls with the report_code, fight_id, and source_id in it
             e.g. https://classic.warcraftlogs.com/reports/m8z9xadHJMr2qR41#fight=45&source=58
             <br>Then wait for the response to come back, copy the text and paste it into wowsims
             <br>by using the Import > JSON option there
             <br><label for="logs_url">Logs URL:</label><br>
-            <input type="text" id="logs_url" name="logs_url"><br>
+            <input type="text" id="logs_url" name="logs_url" style="width: 100%"><br>
             <button onclick="getLogsData()">Submit</button>
             <div id="sims_link"></div>
         </form>
